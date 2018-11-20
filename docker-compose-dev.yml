@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - ./backend:/fytics/backend
+    ports:
+      - "8000:8000"
+  frontend:
+    build: ./frontend
+    command: ["serve", "-s", "build"]
+    volumes:
+      - ./frontend:/fytics/frontend
+      - node-modules:/fytics/frontend/node_modules
+volumes:
+ node-modules:
