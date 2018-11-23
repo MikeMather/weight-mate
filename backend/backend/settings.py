@@ -25,7 +25,7 @@ SECRET_KEY = 'pa@=+4@7s_$00v+ipeerw7yp6hpbu@@)k!gao9dc6#6_xa3_5v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'http://fytics-app.83jnvwy7sx.ca-central-1.elasticbeanstalk.com/']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'fytics-app.83jnvwy7sx.ca-central-1.elasticbeanstalk.com']
 
 
 # Application definition
