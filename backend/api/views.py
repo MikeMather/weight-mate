@@ -7,9 +7,8 @@ import logging
 import os
 
 def index(request, *args):
-    print(os.path.join(settings.FRONTEND_DIR, 'build', 'index.html'))
     try:
-        with open(os.path.join(settings.FRONTEND_DIR, 'build', 'index.html')) as f:
+        with open(os.path.join(settings.BASE_DIR, 'static', 'index.html')) as f:
             return HttpResponse(f.read())
     except FileNotFoundError:
         logging.exception("Production build of app not found")

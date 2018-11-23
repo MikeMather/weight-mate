@@ -5,4 +5,4 @@ COPY package.json /fytics/frontend
 
 RUN npm install
 
-CMD ["npm", "start"]
+CMD ["npm", "ruh", "build"]

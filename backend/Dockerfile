@@ -9,4 +9,4 @@ RUN pip install --upgrade pip
 RUN pip install -r /fytics/requirements.txt
 
 EXPOSE 8000
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "backend.wsgi:application", "-w", "2", "-b", ":8000"]
