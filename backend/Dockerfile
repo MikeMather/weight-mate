@@ -4,7 +4,7 @@ MAINTAINER Mike Mather
 RUN apt-get update
 
 WORKDIR /fytics/backend
-ADD ./requirements.txt /fytics/requirements.txt
+ADD ./dev.requirements.txt /fytics/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /fytics/requirements.txt
 

@@ -84,8 +84,8 @@ DATABASES = {
         'NAME': 'fytics',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '3200'
+        'HOST': 'db',
+        'PORT': '3306'
     }
 }
 
