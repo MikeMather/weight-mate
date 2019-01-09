@@ -1,0 +1,108 @@
+.form form{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    label {
+        margin-bottom: $xs;
+    }
+
+    input, select {
+        margin-bottom: $m;
+        width: 50%;
+    }
+}
+
+.form__section__title {
+    margin-top: $m !important;
+}
+
+.form__submit {
+    width: 150px;
+    align-self: center;
+}
+
+.new-exercise-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    input, select {
+        margin: 0 $xs;
+
+        &[type=number]{
+            width: 80px;
+        }
+    }
+
+    button {
+        height: 80%;
+        padding: $xs;
+    }
+}
+
+.exercise-list__item {
+    display: flex;
+    flex-direction: row;
+    
+
+    .card {
+        flex-grow: 2;
+    }
+
+    button {
+        position: absolute;
+        top: -11px;
+        right: 0;
+        padding: 0;
+        width: 0;
+        height: 22px;
+        width: 22px;
+        font-size: 12px;
+        transform: rotate(45deg);
+        border-radius: 100%;
+    }
+
+    .item--deleted {
+        transition: all .6s ease;
+        transform: translateX(100vw);
+        background-color: lighten($red, 10%);
+        overflow: hidden;
+    }
+
+}
+
+.reps-sets-input {
+    display: flex;
+    flex-direction: row;
+}
+
+.number-input {
+    width: 60px !important;
+    text-align: center;
+}
+
+.multi-select {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: $m;
+
+    .multi-select__item {
+        font-size: $s;
+        color: $orange;
+        background-color: white;
+        border: 2px solid $orange;
+        cursor: pointer;
+        padding: 5px;
+        margin: 0 $xs   ;
+        align-self: center;
+
+        &.selected {
+            color: white;
+            background-color: $orange;
+        }
+    }
+}

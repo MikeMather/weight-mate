@@ -1,0 +1,36 @@
+.todo-exercise-list {
+    margin-bottom: 100px;
+}
+
+.set-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-right: $s;
+    
+    input {
+        width: 50px;
+        text-align: center;
+    }
+    a {
+        padding: 0;
+        color: $green;
+        opacity: 0.2;
+
+        &:hover {
+            color: $green;
+            opacity: 1;
+        }
+    }
+    a.completed {
+        opacity: 1;
+    }
+}
+
+.set-list__set {
+    margin: $s;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}

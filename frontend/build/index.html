@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="icon" href="/favicon.ico?">
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#FF8D3F">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weight Mate</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          }).catch(function(err) {
+            console.log(err)
+          });
+        });
+      } else {
+        console.log('service worker is not supported');
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <noscript>
+        <!-- If there's no js -->
+        <h3>This app requires javascript to run</h3>
+      </noscript>
+    </div>
+    <script src="/bundle.js"></script>
+    <script src="/0.bundle.js"></script>
+  </body>
+</html>

@@ -3,6 +3,6 @@ FROM node
 WORKDIR /fytics/frontend
 COPY package.json /fytics/frontend
 
-RUN npm install
+RUN yarn install
 
-CMD ["npm", "ruh", "build"]
+CMD ["yarn", "run", "build"]

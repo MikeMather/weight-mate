@@ -1,0 +1,152 @@
+.agenda {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.agenda__title {
+    font-size: $m;
+    margin: $m 0 0 0;
+}
+
+.agenda__week {
+    margin: 0;
+    width: 100%;
+    color: $lightgrey;
+}
+
+.agenda__week:has(.card){
+    margin: $m $m;
+}
+
+.agenda__week a {
+    color: $black;
+    width: 100%;
+    text-align: center;
+}
+
+.agenda__week > p:first-of-type {
+    width: calc(100%-$s);
+    margin: $s 0 0 0;
+    padding: $xs 0 $xs $s;
+    font-size: $s;
+    background-color: $black;
+    position: relative;
+    cursor: pointer;
+}
+
+.card {
+    color: $black;
+    background-color: white;
+    box-shadow: 2px 4px 1px $lightgrey;
+    border-left: 5px solid $orange;
+    padding: $s;
+    font-size: $s;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+        box-shadow: 8px 9px 2px $lightgrey;
+    }
+    &:empty{
+        height: 0;
+    }
+}
+
+.card p {
+    margin: $xs 0;
+    color: grey;
+}
+
+.card .card__name {
+    font-size: $m;
+    color: $black;
+    margin-bottom: $s;
+}
+
+.card__detail:last-of-type {
+    white-space: nowrap;
+}
+
+.card.card--borderless {
+    border: none;
+    cursor: auto;
+    &:hover {
+        box-shadow: 2px 4px 1px $lightgrey;
+    }
+}
+
+.card--wrap {
+    flex-wrap: wrap;
+}
+
+.card--compact {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    cursor: auto;
+
+    p {
+        margin: $xs !important;
+        align-self: center;
+    }
+
+    &:hover {
+        box-shadow: 2px 4px 1px $lightgrey;
+    }
+}
+
+
+
+.next-workout, .in-progress {
+    margin-top: $s;
+    border: none;
+    margin-left: $xl;
+
+    &:before {
+        content: 'Next';
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 50%;
+        left: -50px;
+        height: 100%;
+        color: $orange;
+        transform: translateY(-50%);
+
+    }
+}
+
+.in-progress {
+
+    border-left: 5px solid $red;
+}
+
+
+.agenda__week__wrapper {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-height: 600px;
+    margin-top: $s;
+}
+
+.agenda__week__wrapper.closed {
+    max-height: 0;
+    position: relative;
+    margin: 0;
+}
+
+.agenda__week .agenda__week__wrapper.closed:not(:empty){
+    max-height: 10px;
+}
+
+@media screen and (max-width: $phone){
+    .card .card__name {
+        font-size: $sm;
+        color: $black;
+        margin-bottom: $s;
+    }
+}

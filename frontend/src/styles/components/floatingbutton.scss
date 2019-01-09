@@ -1,0 +1,10 @@
+.floating-button {
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    box-shadow: 2px 2px 3px #999;
+
+    &:hover {
+        color: white;
+    }
+}

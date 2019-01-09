@@ -22,7 +22,7 @@ services:
       DJANGO_SETTINGS_MODULE: backend.dev_settings
   frontend:
     build: ./frontend
-    command: ["npm", "start"]
+    command: ["yarn", "run", "dev-server"]
     volumes:
       - ./frontend:/fytics/frontend
       - node-modules:/fytics/frontend/node_modules

@@ -1,0 +1,17 @@
+.page-title {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid $orange;
+    margin-bottom: $m;
+}
+
+
+.page-title__main {
+    margin: 0;
+    font-size: $l;
+}
+
+.page-title__sub {
+    font-size: $s;
+    color: lighten($black, 30%);
+}

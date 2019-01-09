@@ -1,0 +1,104 @@
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    margin: 0;
+    color: $lightgrey;
+    font-size: $s;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 5;
+    transition: width 0.3s ease;
+}
+
+.sidebar__content {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: $black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+    white-space: nowrap;
+}
+
+.app-title {
+    width: 100%;
+    color: $orange;
+    padding: $l 0 0 0;
+    background-color: $black;
+    margin: 0;
+    font-family: 'Fredoka One', cursive;
+    font-size: $m;
+}
+
+.sidebar__content > i {
+    width: 100%;
+    margin: $xs 0 $xl 0;
+    color: white;
+    font-size: $m;
+}
+
+.sidebar__menu {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin: $xl 0;
+        width: 100%;
+        a {
+            padding: 0 $xs;
+        }
+    }
+
+    .active {
+        border-left: 2px solid $orange;
+    }
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 0;
+    right: -50px;
+    padding: $xs;
+    font-size: $m;
+    display: none;
+    color: $black;
+    z-index: 6;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: $tablet){
+    .sidebar {
+        width: 0;
+        position: fixed;
+
+        .sidebar__content {
+            width: 0;
+        }
+
+        &.open .sidebar-toggle {
+            color: $orange;
+            right: -20%;
+        }
+
+        &.open {
+            width: 200px;
+        }
+
+        &.open .sidebar__content {
+            width: 200px;
+        }
+    }
+    
+    .sidebar-toggle {
+        display: block;
+    }
+}

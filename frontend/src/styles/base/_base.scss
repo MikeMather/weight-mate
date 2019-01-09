@@ -1,0 +1,101 @@
+
+
+body, html {
+    color: $black;
+    font-family: 'helvetica';
+    height: 100%;
+    min-height: 100%;
+    overflow: auto;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-color: darken(white, 10%);
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+}
+
+.app {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+}
+
+.page{
+    padding: $l 15%;
+    margin-bottom: $xl;  
+    width: 100%;
+    box-sizing: border-box;
+}
+
+a {
+    color: $lightgrey;
+    text-decoration: none;
+    cursor: pointer;
+    
+    &:hover {
+        color: darken($lightgrey, 15%);
+    }
+}
+
+.card {
+    margin-bottom: $m;
+}
+
+input {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid $lightgrey;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    text-align: center;
+}
+
+.button {
+    border: none;
+    outline: none;
+    background: none;
+    background-color: $orange;
+    color: white;
+    font-size: $s;
+    padding: $xs $s;
+    border-radius: 0;
+    cursor: pointer;
+    &:hover {
+        background-color: darken($orange, 10%);
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+.button-delete {
+    background-color: $red;
+    &:hover {
+        background-color: darken($red, 10%);
+    }
+}
+
+.button-alt {
+    background-color: white;
+    color: $orange;
+    &:hover {
+        color: darken($orange, 10%);
+        background-color: white;
+    }
+}
+
+@media screen and (max-width: $tablet){
+    .page{
+        padding: $l $s;
+    }
+}

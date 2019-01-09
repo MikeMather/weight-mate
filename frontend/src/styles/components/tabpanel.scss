@@ -1,0 +1,26 @@
+.tab-panel__nav {
+    margin-bottom: $m;
+    border-bottom: 2px solid $lightgrey;
+    padding-bottom: 4px;
+    transition: all 0.2s ease;
+
+    a {
+        margin-right: $m;
+        color: $black;
+        padding-bottom: 3px;
+    }
+
+    .active {
+        border-bottom: 2px solid $orange;
+    }
+}
+
+.panel-content{
+    & > div:not(:first-of-type) {
+        display: none;
+    }
+    div {
+        transition: all 0.2s ease;
+    }
+    padding: $m 0;
+}

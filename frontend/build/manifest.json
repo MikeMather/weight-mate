@@ -1,0 +1,21 @@
+{
+    "short_name": "Weight Mate",
+    "name": "Weight Mate",
+    "icons": [
+      {
+        "src": "/images/icon.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      },
+      {
+        "src": "/images/icon192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#353C3F",
+    "display": "fullscreen",
+    "theme_color": "#FF8D3F"
+  }
+  

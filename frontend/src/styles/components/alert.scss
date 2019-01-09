@@ -1,0 +1,25 @@
+.alert {
+    color: white !important;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    text-align: center;
+    opacity: 1;
+    transition: all 0.3s ease;
+    z-index: 7;
+}
+
+.alert--success {
+    background-color: $green;
+}
+
+.alert--error {
+    background-color: $red;
+}
+
+.alert-hidden {
+    visibility: hidden;
+    opacity: 0;
+}
