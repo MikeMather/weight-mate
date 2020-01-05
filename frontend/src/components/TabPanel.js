@@ -7,6 +7,7 @@ class TabPanel extends React.Component{
         super(props)
         this.state = {
             tabs: props.tabs,
+            activeTab: props.activeTab || 0
         }
     }
 
@@ -28,7 +29,7 @@ class TabPanel extends React.Component{
             <div className="tab-panel">
                 <div className="tab-panel__nav">
                     {this.state.tabs.map((tab, i) => (
-                        <a key={uuid()} className={i==0 ? "active" : ''} onClick={this.show} data-ref={`${tab.ref}`}>{tab.text}</a>
+                        <a key={uuid()} className={i==this.state.activeTab ? "active" : ''} onClick={this.show} data-ref={`${tab.ref}`}>{tab.text}</a>
                     ))}
                 </div>
                 <div className="panel-content">

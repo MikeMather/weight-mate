@@ -34,7 +34,7 @@ class SetTimer extends React.Component {
         return (
             <Modal cancel={this.state.cancel}>
                 <div className="countdown-wrapper">
-                    <p id="countdown-time">100</p>
+                    <p id="countdown-time">60</p>
                     <span onClick={this.state.cancel}>&times;</span>
                     <span id="countdown-progress"></span>
                 </div>

@@ -150,3 +150,12 @@
         margin-bottom: $s;
     }
 }
+
+.edit-workout {
+    position: absolute;
+    cursor: pointer;
+    top: 3%;
+    right: 3%;
+    transform: translateY(50%);
+    font-size: 11px;
+}

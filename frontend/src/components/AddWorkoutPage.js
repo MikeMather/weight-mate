@@ -21,6 +21,13 @@ class AddWorkoutPage extends React.Component{
             existingExercises: [],
             error: undefined,
             editing: props.editing,
+            editingExercise: {
+                id: undefined,
+                name: '',
+                weight: 0,
+                sets: 0,
+                reps: 0
+            },
             alert: {
                 show: false,
                 type: 'error',
@@ -131,13 +138,7 @@ class AddWorkoutPage extends React.Component{
     addNewExercise(e){
         e.preventDefault();
         const elements = e.target.parentElement.children;
-        const newExercise = {
-            id: uuid(),
-            name: elements[1].value,
-            weight: parseFloat(elements[3].value),
-            sets: parseInt(elements[4].children[1].value),
-            reps: parseInt(elements[4].children[3].value)
-        }
+        const newExercise = this.state.editingExercise;
 
         if (newExercise.name == '' || !newExercise.weight || !newExercise.sets || !newExercise.reps){
             this.setState(prevState => ({
@@ -150,19 +151,64 @@ class AddWorkoutPage extends React.Component{
         elements[3].value = "";
         elements[4].children[1].value = "";
         elements[4].children[3].value = "";
+        if (this.state.editingExercise.id){
+            this.setState(prevState => {
+                const exercises = prevState.workout.exercises;
+                exercises.push(newExercise);
+                return {
+                    ...prevState,
+                    workout: {
+                        ...prevState.workout,
+                        exercises
+                    },
+                    error: undefined,
+                    editingExercise: {
+                        name: '',
+                        id: undefined,
+                        weight: 0,
+                        sets: 0,
+                        reps: 0
+                    }
+                }
+            })
+        }
+        else {
+            this.setState(prevState => {
+                const exercises = prevState.workout.exercises;
+                const index = exercises.map(ex => ex.id).indexOf(prevState.editExercise.id);
+                exercises[index] = prevState.editingExercise;
+                return {
+                    ...prevState,
+                    workout: {
+                        ...prevState.workout,
+                        exercises
+                    },
+                    error: undefined,
+                    editingExercise: {
+                        name: '',
+                        id: undefined,
+                        weight: 0,
+                        sets: 0,
+                        reps: 0
+                    }
+                }
+            })
+        }
+        
+    }
 
-        this.setState(prevState => {
-            const exercises = prevState.workout.exercises;
-            exercises.push(newExercise);
-            return {
-                ...prevState,
-                workout: {
-                    ...prevState.workout,
-                    exercises
-                },
-                error: undefined
+
+    clearEditingExercise = (e) => {
+        this.setState(prevState => ({
+            ...prevState,
+            editingExercise: {
+                id: undefined,
+                name: '',
+                weight: 0,
+                sets: 0,
+                reps: 0
             }
-        })
+        }));
     }
 
     isSelected = (day) => {
@@ -232,6 +278,18 @@ class AddWorkoutPage extends React.Component{
     }
 
 
+    handleExerciseClick = (index) => {
+        if (!this.state.editingExercise.id){
+            this.setState(prevState => {
+                const editExercise = prevState.workout.exercises[index];
+                return {
+                    ...prevState,
+                    editingExercise: editExercise
+                };
+            })
+        }
+    }
+
     render(){
         return (
             <div className="page">
@@ -254,7 +312,7 @@ class AddWorkoutPage extends React.Component{
                         <div className="exercise-list">
                             {this.state.workout.exercises.map((exercise, index) => {
                                 return (
-                                    <div key={uuid()} className="exercise-list__item">
+                                    <div key={index} className="exercise-list__item" onClick={(e) => this.handleExerciseClick(index)}>
                                         <ExerciseItem
                                             name={exercise.name}
                                             weight={exercise.weight}
@@ -271,7 +329,7 @@ class AddWorkoutPage extends React.Component{
                             })}
                         </div>
                         <p className="form__section__title card__name">Add Exercises</p>
-                        <TabPanel tabs={[{text: "Add existing", ref: "one"}, {text: "Add new", ref: "two"}]}>
+                        <TabPanel activeTab={this.state.editingExercise.id ? 1 : 0} tabs={[{text: "Add existing", ref: "one"}, {text: "Add new", ref: "two"}]}>
                             <div id="one" className="new-exercise-form">
                                 <label htmlFor="existing-exercises">Choose from existing:</label>
                                 <select name="existing-exercises">
@@ -291,16 +349,72 @@ class AddWorkoutPage extends React.Component{
                             </div>
                             <div id="two" className="new-exercise-form">
                                 <label htmlFor="exercise-name">Name:</label>
-                                <input name="exercise-name" type="text"/>
+                                <input 
+                                    name="exercise-name" 
+                                    type="text"
+                                    value={this.state.editingExercise.name}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        this.setState(prevState => ({
+                                            ...prevState,
+                                            editingExercise: {
+                                                ...prevState.editingExercise,
+                                                name: val
+                                            }
+                                        }))
+                                    }}
+                                />
                                 <label placeholder="lbs" htmlFor="exercise-weight">Starting weight:</label>
-                                <input className="number-input" name="exercise-weight"/>
+                                <input 
+                                    className="number-input" 
+                                    name="exercise-weight"
+                                    value={this.state.editingExercise.weight}
+                                    onChange={(e) => {
+                                        const val = e.target.value;
+                                        this.setState(prevState => ({
+                                            ...prevState,
+                                            editingExercise: {
+                                                ...prevState.editingExercise,
+                                                weight: val
+                                            }
+                                        }))
+                                    }}
+                                />
                                 <div className="reps-sets-input">
                                     <label>Sets: </label>
-                                    <input type="text" className="number-input"></input>
+                                    <input 
+                                        type="text" 
+                                        className="number-input" 
+                                        value={this.state.editingExercise.sets}
+                                        onChange={(e) => {
+                                            const val = e.target.value;
+                                            this.setState(prevState => ({
+                                                ...prevState,
+                                                editingExercise: {
+                                                    ...prevState.editingExercise,
+                                                    sets: val
+                                                }
+                                            }))
+                                        }}
+                                    />
                                     <label>Reps: </label>
-                                    <input type="text" className="number-input"></input>
+                                    <input 
+                                        type="text" 
+                                        className="number-input" 
+                                        value={this.state.editingExercise.reps}
+                                        onChange={(e) => {
+                                            this.setState(prevState => ({
+                                                ...prevState,
+                                                editingExercise: {
+                                                    ...prevState.editingExercise,
+                                                    reps: e.target.value
+                                                }
+                                            }))
+                                        }}
+                                    />
                                 </div>
-                                <button onClick={this.addNewExercise.bind(this)} className="button button-alt">Add</button>
+                                <i onClick={this.addNewExercise.bind(this)} className="fa fa-check button-alt"></i>
+                                <i onClick={this.clearEditingExercise.bind(this)} className="fa fa-times button-alt button-delete"></i>
                             </div>
                         </TabPanel>
                         {this.state.error && <p>{this.state.error}</p>}

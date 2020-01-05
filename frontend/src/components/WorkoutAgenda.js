@@ -31,7 +31,8 @@ class WorkoutAgenda extends React.Component{
                 Array.from(res).forEach(event => {
                     const weekday = moment().weekday(event.weekday).format('dddd');
                     newState.weekdays[weekday].push({
-                        id: event.id,
+                        id: undefined,
+                        workoutId: event.id,
                         name: event.name,
                         exerciseCount: event.exercise_count
                     })
@@ -50,29 +51,28 @@ class WorkoutAgenda extends React.Component{
                 localStorage.setItem('agenda', JSON.stringify(this.state))
             })
             .then(ignore => {
-                return Request.get('in-progress')
+                Request.get('in-progress')
+                .then(res => {
+                    if (res){
+                        this.setState(prevState => ({
+                            ...newState,
+                            next: {
+                                id: res.id,
+                                workoutId: res.workout.id,
+                                name: res.workout.name,
+                                exerciseCount: res.exercises.map(ex => 1).reduce((a,b) => a + b),
+                                inProgress: true,
+                                isNext: false
+                            }
+                        }))
+                    }
+                    else {
+                        this.setState(prevState => newState);
+                    }
+                    localStorage.setItem('agenda', JSON.stringify(this.state))
+                })
+                .catch(e => {})
             })
-            .then(res => {
-                if (res){
-                    this.setState(prevState => ({
-                        ...newState,
-                        next: {
-                            id: res.id,
-                            workoutId: res.workout.id,
-                            name: res.workout.name,
-                            exerciseCount: res.exercises.map(ex => 1).reduce((a,b) => a + b),
-                            inProgress: true,
-                            isNext: false
-                        }
-                    }))
-                }
-                else {
-                    this.setState(prevState => newState);
-                }
-                localStorage.setItem('agenda', JSON.stringify(this.state))
-                
-            })
-            .catch(e => {})
         }
         else {
             this.setState(prevState => JSON.parse(localStorage.getItem('agenda')))
@@ -112,6 +112,7 @@ class WorkoutAgenda extends React.Component{
                                 <WorkoutItem
                                     key={uuid()}
                                     id={workout.id}
+                                    workoutId={workout.workoutId}
                                     name={workout.name}
                                     exerciseCount={workout.exerciseCount}
                                     isNext={false}

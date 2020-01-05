@@ -37,7 +37,7 @@ class CompleteWorkoutPage extends React.Component{
         this.setState(prevState => {
             const exercises = res.exercises;
             exercises.forEach(ex => {
-                for (let i = ex.sets.length+1; i < ex.exercise.sets; i++){
+                for (let i = ex.sets.length; i < ex.exercise.sets; i++){
                     ex.sets.push({
                         id: undefined,
                         reps: ex.exercise.reps,
@@ -126,7 +126,6 @@ class CompleteWorkoutPage extends React.Component{
                 })
                 .then(res => {
                     this.updateState(res);
-                    
                 })
                 .then(ignore => {
                     localStorage.setItem('activeWorkout', JSON.stringify(this.state))
@@ -137,7 +136,6 @@ class CompleteWorkoutPage extends React.Component{
             this.setState(prevState => JSON.parse(localStorage.getItem('activeWorkout')));
         }
     }
-
 
 
     updateSet = (exerciseIndex, setIndex, sets) => {

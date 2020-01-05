@@ -26,7 +26,7 @@ def in_progress_sessions(request):
     Get in progress sessions
     """
 
-    session = WorkoutSession.objects.filter(completed=False).order_by('created_at')
+    session = WorkoutSession.objects.filter(completed=False).order_by('-created_at')
     if session:
         serializer = WorkoutSessionSerializer(session[0])
         return Response(serializer.data, status=200)

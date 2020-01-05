@@ -18,17 +18,19 @@ class WorkoutItem extends React.Component{
         }
     }
 
-    goToWorkout = (e) => {
-        if (this.state.isNext){
-            this.props.history.push(`/workouts/new/${this.state.workoutId}`)
+    editWorkout = (e) => {
+        e.stopPropagation();
+        if (navigator.onLine){
+            this.props.history.push(`/workouts/edit/${this.state.workoutId}`)
         }
-        else if(this.state.inProgress){
+    }
+
+    newWorkout = (e) => {
+        if(this.state.inProgress){
             this.props.history.push(`/workouts/${this.state.id}`)
         }
         else {
-            if (navigator.onLine){
-                this.props.history.push(`/workouts/edit/${this.state.id}`)
-            }
+            this.props.history.push(`/workouts/new/${this.state.workoutId}`)
         }
     }
 
@@ -38,10 +40,11 @@ class WorkoutItem extends React.Component{
         className = className.concat(this.state.isNext ? " next-workout" : '')
         
         return (
-            <div onClick={this.goToWorkout} className={className}>
+            <div onClick={this.newWorkout} className={className}>
                 <p className="card__name">{this.state.name}</p>
                     <p className="card__detail">{this.state.inProgress ? "In progress" : this.state.exerciseCount + " exercises"}</p>
                 <p className="card__detail">{this.state.lastCompleted}</p>
+                {(!this.state.isNext && !this.state.inProgress) && <i onClick={this.editWorkout} className="edit-workout fas fa-edit"></i>}
             </div>
         )
     }
